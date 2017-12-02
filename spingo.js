@@ -1,9 +1,14 @@
-const readline = require('readline');
-readline.emitKeypressEvents(process.stdin);
-process.stdin.setRawMode(true);
+const resultElem = document.getElementById('result');
+const introElem = document.getElementById('intro');
+const gameElem = document.getElementById('game');
 
 let alfabetet =
-  'aaaaabbcdeeeeeeffghiiijklmmmmnnnooooprrrsssssttttuvxyåäö'
+  'aaaaabbcdddeeeeeeffghiiijkkklllmmmmnnnooooprrrsssssttttuvxyåäö'
+
+function starta() {
+  introElem.style.display = 'none';
+  gameElem.style.display = '';
+}
 
 function slumpa() {
   let slump = Math.random();
@@ -22,37 +27,19 @@ function slaTarning() {
   }
   let loop = 100;
   let i = 0;
-  let last;
 
   interval = setInterval(() => {
     if (i > loop) {
-      process.stdout.clearLine();
-      process.stdout.cursorTo(0);
-      console.log('Bokstäverna är',
-        siffraTillBokstav(last),
-        siffraTillBokstav(slumpa()),
-        siffraTillBokstav(slumpa()),
-        siffraTillBokstav(slumpa())
-      );
-      console.log('-------------------------------')
-        process.stdout.write('Tryck för att få nya bokstäver.');
       clearInterval(interval);
       interval = undefined;
       return;
     }
+    resultElem.innerHTML = [
+      siffraTillBokstav(slumpa()),
+      siffraTillBokstav(slumpa()),
+      siffraTillBokstav(slumpa()),
+      siffraTillBokstav(slumpa())
+    ].join(' ');
     i++;
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
-    last = slumpa();
-    process.stdout.write(siffraTillBokstav(last));
   }, 20);
 }
-
-process.stdin.on('keypress', (str, key) => {
-  if (key.ctrl && key.name === 'c') {
-    process.exit();
-  } else {
-    slaTarning();
-  }
-});
-slaTarning();

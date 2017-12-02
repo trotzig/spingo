@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Spingo</title>
+    <style>
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: helvetica neue, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+button {
+  padding: 10px 20px;
+  background-color: #fff;
+  border: 1px solid blue;
+  border-radius: 4px;
+  color: blue;
+  font-size: large;
+  cursor: pointer;
+  font-weight: bold;
+}
+#intro, #game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  text-align: center;
+  padding: 30px;
+}
+    </style>
+  </head>
+  <body>
+    <div id="intro">
+      <div>
+        <h1>Välkommen till Spingo!</h1>
+        <p>Av Moa, Hugo och Henric</p>
+        <button onclick="starta()">
+          Starta spelet
+        </button>
+      </div>
+    </div>
+    <div id="game" style="display: none">
+      <div>
+        <h1 id="result">Lycka till!</h1>
+        <button onclick="slaTarning()">Slå tärning</button>
+      </div>
+    </div>
+    <script src="spingo.js"></script>
+  </body>
+</html>
